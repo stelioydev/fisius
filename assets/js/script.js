@@ -1,38 +1,44 @@
-const slides = document.querySelectorAll(".slide")
-let current = 0
+const toggle = document.getElementById("menu-toggle");
+const menu = document.getElementById("menu");
+
+toggle.addEventListener("click", () => {
+menu.classList.toggle("active");
+});
+
+let slides = document.querySelectorAll(".slide");
+let currentSlide = 0;
 
 function nextSlide(){
 
-slides[current].classList.remove("active")
+slides[currentSlide].classList.remove("active");
 
-current++
+currentSlide++;
 
-if(current >= slides.length){
-current = 0
+if(currentSlide >= slides.length){
+currentSlide = 0;
 }
 
-slides[current].classList.add("active")
-
-}
-
-setInterval(nextSlide,5000)
-
-const depoimentos = document.querySelectorAll(".depoimento")
-
-let depoIndex = 0
-
-function nextDepo(){
-
-depoimentos[depoIndex].classList.remove("active")
-
-depoIndex++
-
-if(depoIndex >= depoimentos.length){
-depoIndex = 0
-}
-
-depoimentos[depoIndex].classList.add("active")
+slides[currentSlide].classList.add("active");
 
 }
 
-setInterval(nextDepo,6000)
+setInterval(nextSlide,5000);
+
+let depoimentos = document.querySelectorAll(".depoimento");
+let atual = 0;
+
+function proximo(){
+
+depoimentos[atual].classList.remove("active");
+
+atual++;
+
+if(atual >= depoimentos.length){
+atual = 0;
+}
+
+depoimentos[atual].classList.add("active");
+
+}
+
+setInterval(proximo,4000);
