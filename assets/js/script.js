@@ -1,50 +1,38 @@
-const form = document.getElementById("formContato");
+const slides = document.querySelectorAll(".slide")
+let current = 0
 
-form.addEventListener("submit", function(e){
-  e.preventDefault();
+function nextSlide(){
 
-  const nome = form.nome.value;
-  const email = form.email.value;
-  const telefone = form.telefone.value;
-  const mensagem = form.mensagem.value;
+slides[current].classList.remove("active")
 
-  // WhatsApp
-  const texto = `Olá, me chamo ${nome}.\n\nEmail: ${email}\nTelefone: ${telefone}\n\nMensagem:\n${mensagem}`;
+current++
 
-  const whatsappURL = `https://wa.me/5561984295441?text=${encodeURIComponent(texto)}`;
+if(current >= slides.length){
+current = 0
+}
 
-  window.open(whatsappURL, "_blank");
+slides[current].classList.add("active")
 
-  // Email (FormSubmit invisível)
-  fetch("https://formsubmit.co/ajax/SEUEMAIL@DOMINIO.COM", {
-    method: "POST",
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    },
-    body: JSON.stringify({
-      nome,
-      email,
-      telefone,
-      mensagem
-    })
-  });
+}
 
-  alert("Mensagem enviada com sucesso pelo WhatsApp ✅");
+setInterval(nextSlide,5000)
 
-  form.reset();
-});
-const toggle = document.getElementById("menu-toggle");
-const navMenu = document.querySelector(".nav nav");
+const depoimentos = document.querySelectorAll(".depoimento")
 
-toggle.addEventListener("click", ()=>{
-  navMenu.classList.toggle("active");
-});
-let slides = document.querySelectorAll(".slide");
-let index = 0;
+let depoIndex = 0
 
-setInterval(()=>{
-  slides[index].classList.remove("active");
-  index = (index + 1) % slides.length;
-  slides[index].classList.add("active");
-}, 3500);
+function nextDepo(){
+
+depoimentos[depoIndex].classList.remove("active")
+
+depoIndex++
+
+if(depoIndex >= depoimentos.length){
+depoIndex = 0
+}
+
+depoimentos[depoIndex].classList.add("active")
+
+}
+
+setInterval(nextDepo,6000)
